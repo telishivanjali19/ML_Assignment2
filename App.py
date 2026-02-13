@@ -15,6 +15,9 @@ model_name = st.selectbox(
 if uploaded_file is not None:
     data = pd.read_csv(uploaded_file)
 
+    if "id" in data.columns:
+        data = data.drop("id", axis=1)
+        
     scaler = joblib.load("scaler.pkl")
     model = joblib.load(f"{model_name}.pkl")
 
